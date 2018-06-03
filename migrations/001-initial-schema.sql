@@ -1,0 +1,9 @@
+-- Up 
+CREATE TABLE IF NOT EXISTS SpaceObjects (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name TEXT,
+	type INTEGER
+);
+ 
+-- Down 
+-- DROP TABLE SpaceObjects

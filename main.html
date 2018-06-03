@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Home Page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<h3 class="mt-3">Домашнее задание</h3>
+				<p>Cоздать простейшее RestAPI для получения и управления космическими объектами:</p>
+				<p>URL API: /space</p>
+				<p>На этот URL нужно отправлять AJAX запросы</p>
+
+				<p>
+					1. Добавляет космический объект в базу. Example:
+					<code>POST { name: &#39;example&#39; type: 1 }</code>
+				</p>
+
+				<p>
+					2. Редактирует объект в базе. Example:
+					<code>PUT { id: 12, name: &#39;vasja&#39;, type: 3 }</code>
+				</p>
+
+				<p>3. Удаляет объект из базы. Example:
+					<code>DELETE { id:12 }</code>
+				</p>
+
+				<p>4. Получить все объекты в нашей вселенной. Example:
+					<code>Get, Head { }</code>
+				</p>
+
+				<p>
+					5.** Создать приложение, которое будет содержать список всех объектов, с возможностью редактирования, добавления и удаления
+					объектов
+				</p>
+			</div>
+		</div>
+		<div class="form-row pb-3">
+			<div class="col-5">
+				<input class="form-control" type="text" name="name" id="nameAddBox" placeholder="Input name" required>
+			</div>
+			<div class="col-5">
+				<input class="form-control" type="text" name="type" id="typeAddBox" placeholder="Input type" required>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-primary w-100" id="addBtn">Add</button>
+			</div>
+		</div>
+		<div class="form-row pb-3">
+			<div class="col-2">
+				<input class="form-control" type="text" name="id" id="idEditBox" placeholder="Input id" required>
+			</div>
+			<div class="col-4">
+				<input class="form-control" type="text" name="name" id="nameEditBox" placeholder="Input name" required>
+			</div>
+			<div class="col-4">
+				<input class="form-control" type="text" name="type" id="typeEditBox" placeholder="Input type" required>
+			</div>
+			<div class="col-2">
+				<button class="btn btn-primary w-100" id="editBtn">Edit</button>
+			</div>
+		</div>
+		<div class="form-row pb-3">
+			<div class="col-6">
+				<input class="form-control" type="text" name="id" id="idDeleteBox" placeholder="Input id" required>
+			</div>
+			<div class="col-6">
+				<button class="btn btn-primary w-100" id="deleteBtn">Delete</button>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<table class="table table-striped" id="table"></table>
+			</div>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>
