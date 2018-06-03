@@ -91,7 +91,7 @@ $(() => {
 		});
 	};
 
-	head();
+	get();
 	$('#addBtn').click(add);
 	$('#editBtn').click(edit);
 	$('#deleteBtn').click(del);
