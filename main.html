@@ -48,7 +48,7 @@
 				<input class="form-control" type="text" name="name" id="nameAddBox" placeholder="Input name" required>
 			</div>
 			<div class="col-5">
-				<input class="form-control" type="text" name="type" id="typeAddBox" placeholder="Input type" required>
+				<input class="form-control" type="number" name="type" id="typeAddBox" min="0" step="1" placeholder="Input type" required>
 			</div>
 			<div class="col-2">
 				<button class="btn btn-primary w-100" id="addBtn">Add</button>
@@ -56,13 +56,13 @@
 		</div>
 		<div class="form-row pb-3">
 			<div class="col-2">
-				<input class="form-control" type="text" name="id" id="idEditBox" placeholder="Input id" required>
+				<input class="form-control" type="number" name="id" id="idEditBox" min="1" step="1" placeholder="Input id" required>
 			</div>
 			<div class="col-4">
 				<input class="form-control" type="text" name="name" id="nameEditBox" placeholder="Input name" required>
 			</div>
 			<div class="col-4">
-				<input class="form-control" type="text" name="type" id="typeEditBox" placeholder="Input type" required>
+				<input class="form-control" type="number" name="type" id="typeEditBox" min="0" step="1" placeholder="Input type" required>
 			</div>
 			<div class="col-2">
 				<button class="btn btn-primary w-100" id="editBtn">Edit</button>
@@ -70,7 +70,7 @@
 		</div>
 		<div class="form-row pb-3">
 			<div class="col-6">
-				<input class="form-control" type="text" name="id" id="idDeleteBox" placeholder="Input id" required>
+				<input class="form-control" type="number" name="id" id="idDeleteBox" min="1" step="1" placeholder="Input id" required>
 			</div>
 			<div class="col-6">
 				<button class="btn btn-primary w-100" id="deleteBtn">Delete</button>
