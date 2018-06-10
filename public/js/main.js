@@ -67,7 +67,7 @@ $(() => {
 		$('#table').html(html);
 	}
 	function postSuccess(res) {
-		let html = `<tr data-id=${res.id}><td>${res.name}</td><td>${getSpaceObjType(res.type)}</td><td><button class="btn btn-primary editBtn" data-id="${res.id}" data-toggle="popover">Edit</button> <button class="btn btn-primary deleteBtn" data-id="${res.id}">Delete</button></td></tr>`;
+		let html = `<tr data-id=${res.id}><td>${res.name}</td><td>${getSpaceObjType(res.type)}</td><td><button class="btn btn-primary editBtn" data-toggle="popover">Edit</button> <button class="btn btn-primary deleteBtn">Delete</button></td></tr>`;
 		$('#table').append(html);
 		console.log(res);
 	}
@@ -84,7 +84,7 @@ $(() => {
 
 	get(URL, getSuccess);
 
-	$('#formAdd').submit((e) => {
+	$('#formAdd').on('submit', (e) => {
 		let data = {
 			name: $('#nameAddBox').val(),
 			type: $('#typeAddBox').val()
@@ -112,7 +112,7 @@ $(() => {
 					<option value="6">Комета</option>
 					<option value="7">Астероид</option>
 				</select>
-				<button type="button" class="btn btn-primary confirmEditBtn" id="editBtn">OK</button>
+				<button type="submit" class="btn btn-primary confirmEditBtn" id="confirmEditBtn">OK</button>
 				<button type="reset" class="btn btn-primary">Clear</button>
 			</form>
 		`
@@ -121,29 +121,38 @@ $(() => {
 		$('.editBtn').not(e.target).popover('dispose');
 
 		let tr = e.target.parentElement.parentElement;
-		let id = $(tr).data('id');
+		let id = tr.dataset.id;
 		let name = tr.children[0].innerText;
 		let type = tr.children[1].innerText;
 
 		if (!$('#nameEditBox').val()) $('#nameEditBox').val(name);
+		let optionsList = $('#typeEditBox')[0].children;
+		$(optionsList).each((i, el) => {
+			if (el.innerText === type) $(el).attr('selected', true);
+		});
 	});
-	$(document).on('click', '.confirmEditBtn', (e) => {
-		// e.preventDefault();
+	$(document).on('submit', '#formEdit', (e) => {
+		e.preventDefault();
 
-		let popoverId = e.target.offsetParent.id;
+		let popoverId = e.target.parentElement.parentElement.id;
 		let callBtn = $(`[aria-describedby=${popoverId}]`)[0];
+		let tr = callBtn.parentElement.parentElement;
 
 		let data = {
-			id: $(callBtn).data('id'),
+			id: tr.dataset.id,
 			name: $('#nameEditBox').val(),
 			type: $('#typeEditBox').val()
 		};
 
-		edit(URL, data, putSuccess);
+		let name = tr.children[0].innerText;
+		let type = tr.children[1].innerText;
+
+		if (name !== data.name || type !== getSpaceObjType(data.type)) edit(URL, data, putSuccess);
 		$(callBtn).popover('dispose');
 	});
 	$(document).on('click', '.deleteBtn', (e) => {
-		let data = { id: $(e.target).data('id') };
+		let tr = e.target.parentElement.parentElement;
+		let data = { id: tr.dataset.id };
 		let isConfirmed = confirm('Are you sure you want to delete this row [ID: ' + data.id + ']?');
 		if (isConfirmed) del(URL, data, deleteSuccess);
 	});

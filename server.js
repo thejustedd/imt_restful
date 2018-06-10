@@ -1,8 +1,8 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var Promise = require('bluebird');
-var sqlite = require('sqlite');
-var app = express();
+const express = require('express');
+const bodyParser = require('body-parser');
+const Promise = require('bluebird');
+const sqlite = require('sqlite');
+const app = express();
 
 const dbPromise = Promise.resolve()
 	.then(() => sqlite.open(__dirname + '/database.sqlite'), { Promise })
@@ -23,7 +23,7 @@ app.route('/space')
 			.then(data => res.json(data));
 	})
 	.post((req, res) => {
-		var body = req.body;
+		let body = req.body;
 		dbPromise
 			.then(db => {
 				db.get(`INSERT INTO SpaceObjects (name, type) VALUES ('${body.name}', '${body.type}')`);
@@ -33,7 +33,7 @@ app.route('/space')
 			.then(data => res.json({ id: data.id, name: body.name, type: +body.type }));
 	})
 	.put((req, res) => {
-		var body = req.body;
+		let body = req.body;
 		dbPromise
 			.then(db => db.get(`UPDATE SpaceObjects SET name = '${body.name}', type = '${body.type}' WHERE ID = '${body.id}'`))
 			.then(() => res.json({ id: +body.id, name: body.name, type: +body.type }));
